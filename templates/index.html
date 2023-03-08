@@ -48,16 +48,13 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
-          <a class="nav-link " href="https://mdbootstrap.com/">Home</a>
+          <a class="nav-link " href="/home/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://mdbootstrap.com/docs/standard/">About MDB</a>
+          <a class="nav-link" href="/product/">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://mdbootstrap.com/docs/standard/getting-started/installation/">Free download</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/">Free tutorials</a>
+          <a class="nav-link" href="/checkout/">Checkout</a>
         </li>
       </ul>
       <!-- Left links -->      
@@ -89,7 +86,7 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-
+{% block content %}
 <!-- carousel -->
 <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-mdb-ride="carousel">
   <div class="carousel-indicators">
@@ -493,6 +490,8 @@
 </div>
 </main>
  <!--Main layout-->
+
+ {% endblock content %}
 
 <footer class="text-center text-white mt-4" style="background-color: #607D8B">
   

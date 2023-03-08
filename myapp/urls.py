@@ -4,5 +4,7 @@ from django.urls import path
 app_name = 'myapp'
 
 urlpatterns = [
-    path('',views.item_list, name='item-list')
+    path('home/',views.home, name='home'),
+    path('product/', views.product, name='product'),
+    path('checkout/', views.checkout, name='checkout'),
 ]
