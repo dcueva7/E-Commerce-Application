@@ -25,6 +25,7 @@ class Item(models.Model):
         label = models.CharField(choices=LABEL_CHOICES, max_length=1)
         slug = models.SlugField()
         description = models.TextField()
+       
 
         def __str__(self):
                 return self.title
@@ -36,6 +37,7 @@ class Item(models.Model):
 
 class OrderItem(models.Model):
         item = models.ForeignKey(Item, on_delete=models.CASCADE)
+        quantity = models.IntegerField(default=1)
 
         def __str__(self):
                 return self.title
