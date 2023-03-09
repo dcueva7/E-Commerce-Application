@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 # Create your models here.
 
@@ -19,13 +20,18 @@ LABEL_CHOICES = [
 class Item(models.Model):
         title = models.CharField(max_length=100)
         price = models.DecimalField(decimal_places=2, max_digits=10)
+        discount = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
         category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
         label = models.CharField(choices=LABEL_CHOICES, max_length=1)
-
-        
+        slug = models.SlugField()
+        description = models.TextField()
 
         def __str__(self):
                 return self.title
+        
+        def get_absolute_url(self):
+            return reverse("myapp:product", kwargs={"slug": self.slug})
+        
 
 
 class OrderItem(models.Model):
