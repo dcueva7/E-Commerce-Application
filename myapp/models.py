@@ -30,9 +30,6 @@ class Item(models.Model):
         def __str__(self):
                 return self.title
         
-        def get_absolute_url(self):
-            return reverse("myapp:product", kwargs={"slug": self.slug})
-        
 
 
 class OrderItem(models.Model):

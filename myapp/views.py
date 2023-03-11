@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404, render, get_list_or_404
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from .models import Item, OrderItem, Order
 # Create your views here.
@@ -25,4 +26,10 @@ def add_to_cart(request, slug):
         if order.items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
+        else:
+            order.items.add(item=order_item)
+
+    return reverse('myapp:product')
+
+    
 
