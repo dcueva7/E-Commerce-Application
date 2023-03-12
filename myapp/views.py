@@ -27,15 +27,13 @@ def add_to_cart(request, slug):
             o.save()
              
         else:
-            order_item = OrderItem.objects.create(item=item)
+            order_item = OrderItem.objects.create(item=item, user=request.user, ordered=False)
             order.items.add(order_item)
 
     else:
-        order_item = OrderItem.objects.create(item=item)
+        order_item = OrderItem.objects.create(item=item, user=request.user, ordered=False)
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
-        
-
         
         
     return redirect('myapp:product',slug=slug)
