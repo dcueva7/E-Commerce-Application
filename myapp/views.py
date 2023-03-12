@@ -1,5 +1,4 @@
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, DetailView
 from .models import Item, OrderItem, Order
 # Create your views here.
@@ -19,17 +18,27 @@ def checkout(request):
 
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
-    order_item = OrderItem.objects.create(item=item)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
-            order_item.save()
+            o = order.items.get(item__slug=item.slug)
+            o.quantity += 1
+            o.save()
+             
         else:
-            order.items.add(item=order_item)
+            order_item = OrderItem.objects.create(item=item)
+            order.items.add(order_item)
 
-    return reverse('myapp:product')
+    else:
+        order_item = OrderItem.objects.create(item=item)
+        order = Order.objects.create(user=request.user)
+        order.items.add(order_item)
+        
+
+        
+        
+    return redirect('myapp:product',slug=slug)
 
     
 
