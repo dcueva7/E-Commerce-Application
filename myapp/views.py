@@ -26,15 +26,18 @@ def add_to_cart(request, slug):
             o = order.items.get(item__slug=item.slug)
             o.quantity += 1
             o.save()
+            messages.info(request, 'Item has been added to cart')
              
         else:
             order_item = OrderItem.objects.create(item=item, user=request.user, ordered=False)
             order.items.add(order_item)
+            messages.info(request, 'Item has been added to cart')
 
     else:
         order_item = OrderItem.objects.create(item=item, user=request.user, ordered=False)
         order = Order.objects.create(user=request.user)
         order.items.add(order_item)
+        messages.info(request, 'Order created. Item added to cart.')
         
         
     return redirect('myapp:product',slug=slug)
@@ -49,6 +52,7 @@ def remove_from_cart(request, slug):
         order = order_qs[0]
         if order.items.filter(user=request.user, item=item, ordered=False).exists():
             order.items.filter(user=request.user, item=item, ordered=False).delete()
+            messages.info(request, 'Item has been removed from cart')
         else:
             messages.info(request, 'Item is not in cart')
     
