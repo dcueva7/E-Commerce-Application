@@ -50,7 +50,10 @@
                         Add to cart
                         <i class="fas fa-shopping-cart ms-1"></i>
                     </a>
-                    
+                    <a class="btn btn-danger ms-1" href="{% url 'myapp:remove-from-cart' object.slug %}">
+                        Remove from cart
+                        <i class="fas fa-shopping-cart ms-1"></i>
+                    </a>
                 </div>
                 <!--Content-->
             </div>
