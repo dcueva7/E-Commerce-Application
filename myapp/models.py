@@ -42,6 +42,9 @@ class OrderItem(models.Model):
 
     def total_price_calc(self):
         return self.quantity*self.item.price 
+    
+    def get_discount_price(self):
+        return self.item.discount*self.quantity 
 
     def __str__(self):
         return f'{self.quantity} {self.item.title}'
@@ -57,3 +60,20 @@ class Order(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_total(self):
+        total = 0
+        for item in self.items.all():
+            if item.item.discount:
+                total += item.get_discount_price()
+            else:
+                total += item.total_price_calc()
+
+        return total
+    
+    def get_quantity(self):
+        count = 0
+        for item in self.items.all():
+                count += item.quantity
+
+        return count

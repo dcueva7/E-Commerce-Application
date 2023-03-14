@@ -35,23 +35,8 @@
                     <strong><p style="font-size: 20px;">{{ object.title }} Description</p></strong>
 
                     <p>{{ object.description }}</p>
-
-                    {% comment %} <form class="d-flex justify-content-left">
-                        <!-- Default input -->
-                        <div class="form-outline me-1" style="width: 100px;">
-                            <input type="number" value="1" class="form-control" />
-                        </div>
-                        <a class="btn btn-primary ms-1" href="{% url 'myapp:home' %}">
-                            Add to cart
-                            <i class="fas fa-shopping-cart ms-1"></i>
-                        </a>
-                    </form> {% endcomment %}
                     <a class="btn btn-primary ms-1" href="{% url 'myapp:add-to-cart' object.slug %}">
                         Add to cart
-                        <i class="fas fa-shopping-cart ms-1"></i>
-                    </a>
-                    <a class="btn btn-danger ms-1" href="{% url 'myapp:remove-from-cart' object.slug %}">
-                        Remove from cart
                         <i class="fas fa-shopping-cart ms-1"></i>
                     </a>
                 </div>

@@ -57,14 +57,20 @@ def remove_from_cart(request, slug):
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(user=request.user, item=item, ordered=False).exists():
-            order.items.filter(user=request.user, item=item, ordered=False).delete()
+            o = order.items.get(user=request.user, item=item, ordered=False)
+            if o.quantity > 1:
+                o.quantity -= 1
+                o.save()
+            else:
+                order.items.filter(user=request.user, item=item, ordered=False).delete()
             messages.info(request, 'Item has been removed from cart')
+            return redirect('myapp:summary', pk=order.id)
         else:
             messages.info(request, 'Item is not in cart')
+            return redirect('myapp:summary', pk=order.id)
     
     else:
         messages.info(request, 'Order has not been created')
-
-    return redirect('myapp:product', slug=slug)
+        return redirect('myapp:home')
 
 
