@@ -38,7 +38,10 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
-   
+    
+
+    def total_price_calc(self):
+        return self.quantity*self.item.price 
 
     def __str__(self):
         return f'{self.quantity} {self.item.title}'
