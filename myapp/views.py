@@ -9,6 +9,11 @@ class HomeView(ListView):
     paginate_by = 2
     template_name = 'index.html'
 
+class OrderView(DetailView):
+    model = Order
+    template_name = 'summary.html'
+
+
 
 class ProductDetails(DetailView):
     model = Item
