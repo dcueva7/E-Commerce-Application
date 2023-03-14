@@ -6,8 +6,8 @@ from django.urls import reverse
 # Create your models here.
 
 CATEGORY_CHOICES = [
-    ('S', 'Shirt'),
-    ('SW', 'Sportwear'),
+    ('S', 'Tops'),
+    ('B', 'Bottoms'),
     ('O', 'Outwear'),
 ]
 
@@ -27,6 +27,7 @@ class Item(models.Model):
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
+    file_name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.title

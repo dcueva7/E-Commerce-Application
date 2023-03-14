@@ -6,7 +6,7 @@ from .models import Item, OrderItem, Order
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 2
+    paginate_by = 4
     template_name = 'index.html'
 
 class OrderView(DetailView):
@@ -24,6 +24,11 @@ def checkout(request):
     return render(request, 'checkout.html', {})
 
 def add_to_cart(request, slug):
+    
+    if request.user.is_authenticated == False:
+        messages.error(request, 'You must sign in to add an item to cart')
+        return redirect('myapp:product',slug=slug)
+
     item = get_object_or_404(Item, slug=slug)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():

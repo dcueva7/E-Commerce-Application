@@ -306,7 +306,7 @@
                     data-mdb-ripple-color="light"
                   >
                     <img
-                      src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg"
+                      src="{% static item.file_name %}"
                       class="w-100"
                     />
                     <a href="{% url 'myapp:product' item.slug %}">
