@@ -45,7 +45,11 @@
   
           <div class="card mb-4">
             <div class="card-body p-4">
-    
+
+                <div class="col-md-12 text-center">
+                  <a href="{% url 'myapp:home' %}" class="btn btn-primary">Continue Shopping</a>
+                </div>
+
                 <div class="float-end">
                 <p class="mb-0 me-5 d-flex align-items-center">
                     <span class="small text-muted me-2">Order total:</span> <span class="lead fw-normal">${{ object.get_total }}</span>
