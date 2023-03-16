@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
 from .models import Item, OrderItem, Order
+from square.client import Client
+import os
 # Create your views here.
 
 class HomeView(ListView):
@@ -20,6 +22,24 @@ class ProductDetails(DetailView):
     template_name = "product.html"
 
 def checkout(request):
+    client = Client(
+    access_token= 'EAAAEI3TGNvdL52SiVss0nEBL9BIi1Cg_COppPNbjfNez6y7_Vjn2xGVjBRbOORu',
+    environment='sandbox')
+
+    result = client.locations.list_locations()
+
+    if result.is_success():
+        for location in result.body['locations']:
+            print(f"{location['id']}: ", end="")
+            print(f"{location['name']}, ", end="")
+            print(f"{location['address']['address_line_1']}, ", end="")
+            print(f"{location['address']['locality']}")
+
+    elif result.is_error():
+        for error in result.errors:
+            print(error['category'])
+            print(error['code'])
+            print(error['detail'])
 
     return render(request, 'checkout.html', {})
 
