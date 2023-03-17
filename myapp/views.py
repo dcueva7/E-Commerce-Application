@@ -90,12 +90,14 @@ def handle_payment(request, id):
     access_token= 'EAAAEI3TGNvdL52SiVss0nEBL9BIi1Cg_COppPNbjfNez6y7_Vjn2xGVjBRbOORu',
     environment='sandbox')
 
+    amount = 100*(int(order.get_total())) 
+
     result = client.payments.create_payment(
         body = {
-            "source_id": id, #add payment token generated here
+            "source_id": id, 
             "idempotency_key": str(uuid.uuid4()),
             "amount_money": {
-            "amount": order.get_total, #order toatl here
+            "amount": amount, 
             "currency": "USD"
             },
         }
