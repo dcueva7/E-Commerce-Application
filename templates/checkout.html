@@ -145,7 +145,7 @@
                         <div id="payment-form">
                             <div id="payment-status-container"></div>
                             <div id="card-container"></div>
-                            <button id="card-button" type="button">Pay</button>
+                            <button id="card-button" type="button" class="btn btn-primary">Pay</button>
                           </div>
                     </div>
                     
@@ -237,6 +237,7 @@
             if (result.status === 'OK') {
               console.log(`Payment token is ${result.token}`);
               statusContainer.innerHTML = "Payment Successful";
+              window.location.href = "{% url 'myapp:handle' 1234 %}".replace(/1234/, result.token.toString());
             } else {
               let errorMessage = `Tokenization failed with status: ${result.status}`;
               if (result.errors) {
