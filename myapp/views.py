@@ -24,6 +24,10 @@ class ProductDetails(DetailView):
 class CheckoutView(DetailView):
     model = Order
     template_name = 'checkout.html'
+
+class ConfirmationView(DetailView):
+    model = Order
+    template_name = 'confirmation.html'
     
 
 def add_to_cart(request, slug):
@@ -109,4 +113,4 @@ def handle_payment(request, id):
     elif result.is_error():
         print(result.errors)
 
-    return redirect('myapp:home')
+    return redirect('myapp:confirmation', pk=order.id)
