@@ -2,13 +2,6 @@
 
 {% load static %}
 
-{% block head %}
-
-<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
-
-
-{% endblock %}
-
 {% block content %}
 <!--Main layout-->
 <main class="mt-5 pt-4">
@@ -125,29 +118,6 @@
                     </div>
 
                     <hr />
-
-                    <div class="my-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
-                            <label class="form-check-label" for="flexRadioDefault1"> Credit card </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                            <label class="form-check-label" for="flexRadioDefault2"> Debit card </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" />
-                            <label class="form-check-label" for="flexRadioDefault3"> Paypal </label>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div id="payment-form">
-                            <div id="payment-status-container"></div>
-                            <div id="card-container"></div>
-                            <button id="card-button" type="button" class="btn btn-primary">Pay</button>
-                          </div>
-                    </div>
                     
                     <hr class="mb-4" />                    
                   <button class="btn btn-primary" type="button">Continue to checkout</button>
@@ -204,17 +174,17 @@
                 <!-- Promo code -->
                 <form class="card p-2">
                     <div class="input-group mb-3">
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Promo code"
-    aria-label="Promo code"
-    aria-describedby="button-addon2"
-  />
-  <button class="btn btn-primary" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-    redeem
-  </button>
-</div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Promo code"
+                        aria-label="Promo code"
+                        aria-describedby="button-addon2"
+                    />
+                    <button class="btn btn-primary" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                        redeem
+                    </button>
+                    </div>
                 </form>
                 <!-- Promo code -->
             </div>
@@ -222,38 +192,6 @@
         </div>
         <!--Grid row-->
     </div>
-    <script type="module">
-        const payments = Square.payments('sandbox-sq0idb-D7hZdE9MC_MT1NVV3sgn8g', 'L2SCMMMWYX1BE');
-        const card = await payments.card();
-    
-        await card.attach('#card-container');
-    
-        const cardButton = document.getElementById('card-button');
-        cardButton.addEventListener('click', async () => {
-          const statusContainer = document.getElementById('payment-status-container');
-    
-          try {
-            const result = await card.tokenize();
-            if (result.status === 'OK') {
-              console.log(`Payment token is ${result.token}`);
-              statusContainer.innerHTML = "Payment Successful";
-              window.location.href = "{% url 'myapp:handle' 1234 %}".replace(/1234/, result.token.toString());
-            } else {
-              let errorMessage = `Tokenization failed with status: ${result.status}`;
-              if (result.errors) {
-                errorMessage += ` and errors: ${JSON.stringify(
-                  result.errors
-                )}`;
-              }
-    
-              throw new Error(errorMessage);
-            }
-          } catch (e) {
-            console.error(e);
-            statusContainer.innerHTML = "Payment Failed";
-          }
-        });
-    </script>
 </main>
 <!--Main layout-->
 

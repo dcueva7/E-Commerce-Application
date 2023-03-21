@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7b2d12287ce751b284e9b358fa2093129bc03abbb7f52af1db7196abbb863c69"
+            "sha256": "df0cd2b0fb73db71e5e7edb87533d2482b306f861021ecd3f9fac3944ab45544"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -265,10 +265,18 @@
         },
         "django-allauth": {
             "hashes": [
-                "sha256:c8a32a1b163725e9e6b60dcd78e795cec749d68bd35003a33f7707c692928be2"
+                "sha256:1336f430d5797e7484dfddc6ddb1d5f61f04bb24a9519b64756847d089b2ffba"
             ],
             "index": "pypi",
-            "version": "==0.53.0"
+            "version": "==0.53.1"
+        },
+        "django-countries": {
+            "hashes": [
+                "sha256:22915d9b9403932b731622619940a54894a3eb0da9a374e7249c8fc453c122d7",
+                "sha256:2df707aca7a5e677254bed116cf6021a136ebaccd5c2f46860abd6452bb45521"
+            ],
+            "index": "pypi",
+            "version": "==7.5.1"
         },
         "django-extensions": {
             "hashes": [
@@ -277,6 +285,14 @@
             ],
             "index": "pypi",
             "version": "==3.2.1"
+        },
+        "django-localflavor": {
+            "hashes": [
+                "sha256:6593865dc671333b3edc88e729e6d384d00b6db7891ef5d3a65db831a40050d2",
+                "sha256:ac2fa377bbcba4cae95e97077d9e77c7f22b3d93e4845e2e133ba7e664043a44"
+            ],
+            "index": "pypi",
+            "version": "==3.1"
         },
         "enum34": {
             "hashes": [
@@ -484,6 +500,13 @@
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.8.2"
         },
+        "python-stdnum": {
+            "hashes": [
+                "sha256:bcc763d9c49ae23da5d2b7a686d5fd1deec9d9051341160a10d1ac723a26bec0",
+                "sha256:d7f2a3c7ef4635c957b9cbdd9b1993d1f6ee3a2959f03e172c45440d99f296eb"
+            ],
+            "version": "==1.18"
+        },
         "python3-openid": {
             "hashes": [
                 "sha256:33fbf6928f401e0b790151ed2b5290b02545e8775f982485205a066f874aaeaf",
@@ -537,6 +560,14 @@
             ],
             "index": "pypi",
             "version": "==25.2.0.20230315"
+        },
+        "typing-extensions": {
+            "hashes": [
+                "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb",
+                "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==4.5.0"
         },
         "urllib3": {
             "hashes": [
