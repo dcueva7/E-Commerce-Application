@@ -1,9 +1,12 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.views.generic import ListView, DetailView
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, View
 from django.contrib import messages
 from .models import Item, OrderItem, Order
 from square.client import Client
 import uuid
+from django.views.generic.edit import UpdateView
+from .forms import CheckoutForm
 # Create your views here.
 
 class HomeView(ListView):
@@ -21,9 +24,22 @@ class ProductDetails(DetailView):
     model = Item
     template_name = "product.html"
 
-class CheckoutView(DetailView):
-    model = Order
-    template_name = 'checkout.html'
+class CheckoutView(View):
+    
+    def get(self, *args, **kwargs):    
+        form = CheckoutForm()
+        context = {
+            'form': form
+        }
+        return render(self.request, 'checkout.html', context)  
+    
+
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        if form.is_valid():
+            return redirect('myapp:payment')
+
 
 class ConfirmationView(DetailView):
     model = Order
@@ -114,3 +130,7 @@ def handle_payment(request, id):
         print(result.errors)
 
     return redirect('myapp:confirmation', pk=order.id)
+
+def payment_view(request):
+
+    return render(request, 'payment.html')

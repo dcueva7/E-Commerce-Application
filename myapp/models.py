@@ -1,8 +1,8 @@
 
 from django.db import models
 from django.conf import settings
-from django_countries.fields import CountryField
-from localflavor.us.models import USStateField, USZipCodeField
+# from django_countries.fields import CountryField
+# from localflavor.us.models import USStateField, USZipCodeField
 
 # Create your models here.
 
@@ -59,14 +59,14 @@ class Order(models.Model):
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField(auto_now_add=True)
-    f_name = models.CharField(max_length=50)
-    l_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=200)
-    address = models.CharField(max_length=500)
-    address2 = models.CharField(max_length=200)
-    country = CountryField()
-    state = USStateField()
-    zip = USZipCodeField()
+    f_name = models.CharField(max_length=50, null=True)
+    l_name = models.CharField(max_length=50, null=True)
+    email = models.EmailField(max_length=200, null=True)
+    address = models.CharField(max_length=500, null=True)
+    address2 = models.CharField(max_length=200, null=True)
+    country = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=100, null=True)
+    zip = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.user.username

@@ -12,17 +12,18 @@
         <!--Grid row-->
         <div class="row">
             <!--Grid column-->
+            
             <div class="col-md-8 mb-4">
-                <!--Card-->
-                <div class="card p-4">
+                <form method="POST" class="card p-4">
+                    {% csrf_token %}
                     <!--Grid row-->
                     <div class="row mb-3">
                         <!--Grid column-->
                         <div class="col-md-6 mb-2">
                             <!--firstName-->
                             <div class="form-outline">
-                                <input type="text" id="typeText" class="form-control" />
-                                <label class="form-label" for="typeText">First name</label>
+                                {{ form.f_name }}
+                                <label class="form-label" for="{{ form.f_name.id_for_label }}">First name</label>
                             </div>
                         </div>
                         <!--Grid column-->
@@ -31,26 +32,21 @@
                         <div class="col-md-6 mb-2">
                             <!--lastName-->
                             <div class="form-outline">
-                                <input type="text" id="typeText" class="form-control" />
-                                <label class="form-label" for="typeText">Last name</label>
+                                {{ form.l_name }}
+                                <label class="form-label" for="{{ form.l_name.id_for_label }}">Last name</label>
+                                
                             </div>
                         </div>
                         <!--Grid column-->
                     </div>
                     <!--Grid row-->
 
-                    <!--Username-->
-                    <div class="input-group mb-4">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                    </div>
-
                     <!--email-->
                     <p class="mb-0">
-                        Email (optional)
+                        Email
                     </p>
                     <div class="form-outline mb-4">
-                         <input type="email" class="form-control" placeholder="youremail@example.com" aria-label="youremail@example.com" aria-describedby="basic-addon1" />
+                         {{ form.email }}
                     </div>
 
                     <!--address-->
@@ -58,7 +54,7 @@
                         Address
                     </p>
                     <div class="form-outline mb-4">
-                        <input type="email" class="form-control" placeholder="1234 Main St" aria-label="1234 Main St" aria-describedby="basic-addon1" />
+                        {{ form.address }}
                     </div>
 
                     <!--address-2-->
@@ -66,7 +62,7 @@
                         Address 2 (optional)
                     </p>
                     <div class="form-outline mb-4">
-                        <input type="email" class="form-control" placeholder="Apartment or suite" aria-label="Apartment or suite" aria-describedby="basic-addon1" />
+                        {{ form.address2 }}
                     </div>
 
                     <!--Grid row-->
@@ -77,8 +73,8 @@
                                 Country
                             </p>
                             <div class="form-outline mb-4">
-                        <input type="email" class="form-control" placeholder="United States" aria-label="United States" aria-describedby="basic-addon1" />
-                    </div>
+                                {{ form.country }}
+                            </div>
                         </div>
                         <!--Grid column-->
 
@@ -88,7 +84,7 @@
                                 State
                             </p>
                             <div class="form-outline mb-4">
-                        <input type="email" class="form-control" placeholder="California" aria-label="California" aria-describedby="basic-addon1" />
+                        {{ form.state }}
                     </div>
                         </div>
                         <!--Grid column-->
@@ -99,7 +95,7 @@
                                 Zip
                             </p>
                             <div class="form-outline">
-                                <input type="text" class="form-control"/>
+                                {{ form.zip }}
                             </div>
                         </div>
                         <!--Grid column-->
@@ -107,25 +103,13 @@
                     <!--Grid row-->
 
                     <hr />
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault">Shipping address is the same as my billing address</label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault">Save this information for next time</label>
-                    </div>
-
-                    <hr />
                     
                     <hr class="mb-4" />                    
-                  <button class="btn btn-primary" type="button">Continue to checkout</button>
-                </div>
-                <!--/.Card-->
+                  <button class="btn btn-primary" type="submit">Continue to checkout</button>
+                </form> 
+                
             </div>
             <!--Grid column-->
-
             <!--Grid column-->
             <div class="col-md-4 mb-4">
                 <!-- Heading -->
@@ -187,8 +171,6 @@
                     </div>
                 </form>
                 <!-- Promo code -->
-            </div>
-            <!--Grid column-->
         </div>
         <!--Grid row-->
     </div>

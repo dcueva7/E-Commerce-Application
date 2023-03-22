@@ -10,24 +10,33 @@
 {% endblock %}
 
 {% block content %}
+
 <!--Main layout-->
 <main class="mt-5 pt-4">
     <div class="container">
         <!-- Heading -->
         <h2 class="my-5 text-center">Checkout form</h2>
-
         <!--Grid row-->
         <div class="row">
-
+            <!--Grid column-->
+            <div class="col-md-8 mb-4">
+                <!--Card-->
+                <div class="card p-4">
                     <hr />
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault">Shipping address is the same as my billing address</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault">Save this information for next time</label>
+                    </div>
                     <hr />
-
                     <div class="my-3">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
                             <label class="form-check-label" for="flexRadioDefault1"> Credit card </label>
                         </div>
-
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
                             <label class="form-check-label" for="flexRadioDefault2"> Debit card </label>
@@ -44,14 +53,12 @@
                             <button id="card-button" type="button" class="btn btn-primary">Pay</button>
                           </div>
                     </div>
-                    
+
                     <hr class="mb-4" />                    
-                  <button class="btn btn-primary" type="button">Continue to checkout</button>
                 </div>
                 <!--/.Card-->
             </div>
             <!--Grid column-->
-
             <!--Grid column-->
             <div class="col-md-4 mb-4">
                 <!-- Heading -->
@@ -59,7 +66,6 @@
                     <span class="text-muted">Your cart</span>
                     <span class="badge rounded-pill badge-primary">3</span>
                 </h4>
-
                 <!-- Cart -->
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between">
@@ -96,7 +102,6 @@
                     </li>
                 </ul>
                 <!-- Cart -->
-
                 <!-- Promo code -->
                 <form class="card p-2">
                     <div class="input-group mb-3">
@@ -152,5 +157,4 @@
     </script>
 </main>
 <!--Main layout-->
-
 {% endblock content %}
