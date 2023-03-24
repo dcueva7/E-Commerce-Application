@@ -56,7 +56,7 @@
                                             <div class="py-2">
 
                                                 <span class="d-block text-muted">Payment</span>
-                                            <span><img src="https://img.icons8.com/color/48/000000/mastercard.png" width="20" /></span>
+                                            <span><img src="{% static 'img/square-vector-logo-2022.png' %}" width="60"/></span>
                                                 
                                             </div>
                                         </td>
@@ -73,11 +73,6 @@
                                 </tbody>
 
                             </table>
-
-
-
-
-                            
                         </div>
 
 
@@ -226,10 +221,6 @@
 
                             <p>We will be sending shipping confirmation email when the item shipped successfully!</p>
                             <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
-                            <span>Nike Team</span>
-
-
-
                         
 
                     </div>
@@ -238,8 +229,7 @@
                     <div class="d-flex justify-content-between footer p-3">
 
                         <span>Need Help? visit our <a href="#"> help center</a></span>
-                         <span>12 June, 2020</span>
-                        
+                         <span>{% now "M d, Y" %}</span>
                     </div>
 
 
