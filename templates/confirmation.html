@@ -23,7 +23,7 @@
 
                     <div class="invoice p-5">
 
-                        <h5>Your order Confirmed!</h5>
+                        <h5>Your Order Is Confirmed!</h5>
 
                         <span class="font-weight-bold d-block mt-4">Hello, {{ object.user.username }}</span>
                         <span>You order has been confirmed and will be shipped in next two days!</span>
@@ -65,7 +65,7 @@
                                             <div class="py-2">
 
                                                 <span class="d-block text-muted">Shiping Address</span>
-                                            <span>{{ object.address }} {% if object.address2 %}{{ object.address2 }} {% endif %}</span>
+                                            <span>{{ object.address }}{% if object.address2 %}{{ object.address2 }}{% endif %}, {{ object.state }} {{ object.zip }}</span>
                                                 
                                             </div>
                                         </td>
