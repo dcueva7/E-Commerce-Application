@@ -1,6 +1,6 @@
 from django import forms
 from django_countries.fields import CountryField
-from localflavor.us.forms import USStateSelect, USZipCodeField
+from localflavor.us.forms import USStateSelect, USZipCodeField, USStateField
 
 
 class CheckoutForm(forms.Form):
@@ -13,5 +13,5 @@ class CheckoutForm(forms.Form):
     country = CountryField(blank_label='(select country)').formfield(attrs={
         'class': 'form-control' 
     })
-    state = forms.CharField(widget=USStateSelect(), initial='CA')
+    state = USStateField(widget=USStateSelect(), initial='CA')
     zip = USZipCodeField()

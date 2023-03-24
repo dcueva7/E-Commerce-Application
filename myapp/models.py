@@ -1,8 +1,8 @@
 
 from django.db import models
 from django.conf import settings
-# from django_countries.fields import CountryField
-# from localflavor.us.models import USStateField, USZipCodeField
+from django_countries.fields import CountryField
+from localflavor.us.models import USStateField, USZipCodeField
 
 # Create your models here.
 
@@ -64,9 +64,9 @@ class Order(models.Model):
     email = models.EmailField(max_length=200, null=True)
     address = models.CharField(max_length=500, null=True)
     address2 = models.CharField(max_length=200, null=True)
-    country = models.CharField(max_length=100, null=True)
-    state = models.CharField(max_length=100, null=True)
-    zip = models.CharField(max_length=100, null=True)
+    country = CountryField()
+    state = USStateField()
+    zip = USZipCodeField()
 
     def __str__(self):
         return self.user.username

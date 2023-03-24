@@ -19,13 +19,13 @@ class OrderView(DetailView):
     template_name = 'summary.html'
 
 
-
 class ProductDetails(DetailView):
     model = Item
     template_name = "product.html"
 
 class CheckoutView(View):
     
+
     def get(self, *args, **kwargs):    
         form = CheckoutForm()
         context = {
@@ -38,6 +38,15 @@ class CheckoutView(View):
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
         if form.is_valid():
+            first = form.cleaned_data.get('f_name')
+            last = form.cleaned_data.get('l_name')
+            email = form.cleaned_data.get('email')
+            address = form.cleaned_data.get('address')
+            address2 = form.cleaned_data.get('address2')
+            country = form.cleaned_data.get('country')
+            state = form.cleaned_data.get('state')
+            zip = form.cleaned_data.get('zip')
+            Order.objects.filter(user=self.request.user, ordered=False).update(f_name=first, l_name=last, email=email, address=address, address2=address2, country=country, state=state, zip=zip)
             return redirect('myapp:payment')
 
 
@@ -56,8 +65,8 @@ def add_to_cart(request, slug):
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
-        if order.items.filter(item__slug=item.slug).exists():
-            o = order.items.get(item__slug=item.slug)
+        if order.items.filter(item__slug=item.slug, ordered=False).exists():
+            o = order.items.get(item__slug=item.slug, ordered=False)
             o.quantity += 1
             o.save()
             messages.info(request, 'Item has been added to cart')
@@ -91,6 +100,7 @@ def remove_from_cart(request, slug):
                 o.save()
             else:
                 order.items.filter(user=request.user, item=item, ordered=False).delete()
+
             messages.info(request, 'Item has been removed from cart')
             return redirect('myapp:summary', pk=order.id)
         else:
@@ -124,7 +134,11 @@ def handle_payment(request, id):
     )
 
     if result.is_success():
-        print(result.body)
+        order.ordered = True
+        order.save()
+        for i in order.items.all():
+            i.ordered = True
+            i.save()
     
     elif result.is_error():
         print(result.errors)
