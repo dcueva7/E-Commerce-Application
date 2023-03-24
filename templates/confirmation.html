@@ -16,7 +16,7 @@
 
                     <div class="text-left logo p-2 px-5">
 
-                        <img src="https://i.imgur.com/2zDU056.png" width="50">
+                        <img src="{% static 'img/isolate.jpg' %}" width="50">
                         
 
                     </div>
@@ -25,7 +25,7 @@
 
                         <h5>Your order Confirmed!</h5>
 
-                        <span class="font-weight-bold d-block mt-4">Hello, Chris</span>
+                        <span class="font-weight-bold d-block mt-4">Hello, {{ object.user.username }}</span>
                         <span>You order has been confirmed and will be shipped in next two days!</span>
 
                         <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
@@ -38,7 +38,7 @@
                                             <div class="py-2">
 
                                                 <span class="d-block text-muted">Order Date</span>
-                                            <span>12 Jan,2018</span>
+                                            <span>{{ object.ordered_date }}</span>
                                                 
                                             </div>
                                         </td>
@@ -65,7 +65,7 @@
                                             <div class="py-2">
 
                                                 <span class="d-block text-muted">Shiping Address</span>
-                                            <span>414 Advert Avenue, NY,USA</span>
+                                            <span>{{ object.address }} {% if object.address2 %}{{ object.address2 }} {% endif %}</span>
                                                 
                                             </div>
                                         </td>

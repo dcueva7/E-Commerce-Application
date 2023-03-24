@@ -1,4 +1,4 @@
-
+import uuid
 from django.db import models
 from django.conf import settings
 from django_countries.fields import CountryField
@@ -67,6 +67,7 @@ class Order(models.Model):
     country = CountryField()
     state = USStateField()
     zip = USZipCodeField()
+    order_no = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
         return self.user.username

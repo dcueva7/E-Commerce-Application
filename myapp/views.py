@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Item, OrderItem, Order
 from square.client import Client
 import uuid
+from datetime import datetime
 from django.views.generic.edit import UpdateView
 from .forms import CheckoutForm
 # Create your views here.
@@ -135,6 +136,8 @@ def handle_payment(request, id):
 
     if result.is_success():
         order.ordered = True
+        order.save()
+        order.ordered_date = datetime.now()
         order.save()
         for i in order.items.all():
             i.ordered = True
