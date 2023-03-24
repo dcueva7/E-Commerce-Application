@@ -149,5 +149,9 @@ def handle_payment(request, id):
     return redirect('myapp:confirmation', pk=order.id)
 
 def payment_view(request):
+    
+    context = {
+        'order': Order.objects.get(user=request.user, ordered=False)
+    }
 
-    return render(request, 'payment.html')
+    return render(request, 'payment.html', context)

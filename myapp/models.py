@@ -67,7 +67,6 @@ class Order(models.Model):
     country = CountryField()
     state = USStateField()
     zip = USZipCodeField()
-    order_no = models.UUIDField(default=uuid.uuid4, editable=False)
 
     def __str__(self):
         return self.user.username
