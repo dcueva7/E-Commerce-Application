@@ -13,5 +13,6 @@ class CheckoutForm(forms.Form):
     country = CountryField(blank_label='(select country)').formfield(attrs={
         'class': 'form-control' 
     })
+    city = forms.CharField(label='City', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
     state = USStateField(widget=USStateSelect(), initial='CA')
     zip = USZipCodeField()

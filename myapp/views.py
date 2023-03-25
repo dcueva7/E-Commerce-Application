@@ -44,10 +44,11 @@ class CheckoutView(View):
             email = form.cleaned_data.get('email')
             address = form.cleaned_data.get('address')
             address2 = form.cleaned_data.get('address2')
+            city = form.cleaned_data.get('city')
             country = form.cleaned_data.get('country')
             state = form.cleaned_data.get('state')
             zip = form.cleaned_data.get('zip')
-            Order.objects.filter(user=self.request.user, ordered=False).update(f_name=first, l_name=last, email=email, address=address, address2=address2, country=country, state=state, zip=zip)
+            Order.objects.filter(user=self.request.user, ordered=False).update(f_name=first, l_name=last, email=email, address=address, address2=address2,city=city, country=country, state=state, zip=zip)
             return redirect('myapp:payment')
 
 

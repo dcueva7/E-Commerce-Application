@@ -64,6 +64,7 @@ class Order(models.Model):
     email = models.EmailField(max_length=200, null=True)
     address = models.CharField(max_length=500, null=True)
     address2 = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=100, null=True)
     country = CountryField()
     state = USStateField()
     zip = USZipCodeField()
