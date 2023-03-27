@@ -50,6 +50,8 @@ class CheckoutView(View):
             zip = form.cleaned_data.get('zip')
             Order.objects.filter(user=self.request.user, ordered=False).update(f_name=first, l_name=last, email=email, address=address, address2=address2,city=city, country=country, state=state, zip=zip)
             return redirect('myapp:payment')
+        else:
+            messages.warning(self.request, 'Invalid form submission')
 
 
 class ConfirmationView(DetailView):
